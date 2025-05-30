@@ -18,6 +18,7 @@ resource "random_string" "db-pass" {
   min_upper   = 1
 }
 
+# By default creates a public endpoint, you can also only create a private endpoint if needed.
 resource "scaleway_rdb_instance" "main" {
   name               = "test-dbt"
   node_type          = "DB-PLAY2-NANO"
