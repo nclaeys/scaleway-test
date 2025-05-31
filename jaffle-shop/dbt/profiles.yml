@@ -1,0 +1,21 @@
+duckdb:
+  outputs:
+    scaleway:
+      type: postgres
+      threads: 1
+      database: dbt
+      host: "{{ env_var('DBT_HOST') }}"
+      user: niels
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      port: 14996
+      schema: analytics
+    dev:
+      type: postgres
+      host: postgres
+      user: niels
+      password: somePassword
+      dbname: dbt
+      schema: analytics
+      threads: 1
+      port: 5432
+  target: scaleway
