@@ -1,6 +1,7 @@
+#10.2.0.0/17 -> 10.2.0.0/20, 10.2.16.0/20, 10.2.32.0/20
 resource "scaleway_vpc" "vpc" {
   name           = "niels-demo"
-  tags = local.tags
+  tags           = local.tags
   enable_routing = true
   region         = local.region
   project_id     = local.project_id
@@ -25,7 +26,7 @@ resource "scaleway_vpc_public_gateway_ip" "zone_1" {
 resource "scaleway_vpc_public_gateway" "gw_zone_1" {
   enable_smtp = false
   ip_id       = scaleway_vpc_public_gateway_ip.zone_1.id
-  name = format("%s-gateway", "niels-demo")
+  name        = format("%s-gateway", "niels-demo")
   project_id  = local.project_id
   tags        = local.tags
   type        = "VPC-GW-S"
@@ -36,7 +37,7 @@ resource "scaleway_ipam_ip" "this" {
   is_ipv6    = false
   region     = local.region
   project_id = local.project_id
-  address = "10.2.0.1"
+  address    = "10.2.0.1"
 
   source {
     private_network_id = scaleway_vpc_private_network.private_1.id

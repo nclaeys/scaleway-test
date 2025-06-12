@@ -19,6 +19,10 @@ resource "scaleway_rdb_instance" "main" {
   password           = random_string.db-pass.result
   volume_type        = "sbs_5k"
   volume_size_in_gb  = 5
+  private_network {
+    pn_id = scaleway_vpc_private_network.private_1.id
+    ip_net = "10.2.15.192/26" # last 64 IPs of the subnet
+  }
 }
 
 resource "scaleway_rdb_database" "main" {
